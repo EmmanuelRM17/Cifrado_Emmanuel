@@ -1,0 +1,130 @@
+/* Fondo gris oscuro */
+.hero {
+    background-color: #14161A;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeIn 1s ease-out forwards;
+  }
+  
+  /* Animación de aparición */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Estilo de botones */
+  button.is-success {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  button.is-success:hover {
+    background-color: #218838;
+    transform: scale(1.1); /* Aumenta ligeramente al pasar el cursor */
+  }
+  
+  button.is-link {
+    background-color: #ffffff;
+    color: rgb(26, 26, 26);
+    font-weight: bold;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  button.is-link:hover {
+    background-color: #a6aaa9;
+    transform: scale(1.1); /* Aumenta ligeramente al pasar el cursor */
+  }
+  
+  /* Animaciones para los textos */
+  .title, .subtitle {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: slideIn 1.5s ease forwards;
+  }
+  
+  /* Animación para la aparición del título */
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .subtitle {
+    animation-delay: 0.3s; /* Retraso para que el subtítulo aparezca después del título */
+  }
+  
+  /* Centrando el contenido */
+  .hero-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+/* Estilos generales para pantallas móviles */
+@media (max-width: 768px) {
+    /* Ajustar el header para que los elementos estén en las esquinas */
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px; /* Reducir padding en móviles */
+    }
+  
+    /* Ajustar tamaño del logo y del link de Inicio */
+    header h1 {
+      font-size: 1.5rem; /* Reducir el tamaño del logo en móviles */
+    }
+  
+    header a {
+      font-size: 1rem; /* Reducir tamaño del texto de Inicio */
+    }
+  
+    /* Ajuste adicional para los íconos en el header */
+    header a svg {
+      width: 1rem; /* Ajustar tamaño del ícono */
+      height: 1rem;
+    }
+    .modal-card-body p {
+        font-size: 1rem; /* Reducir tamaño del texto en móviles */
+      }
+    
+      .buttons.is-centered {
+        flex-direction: column; /* Hacer que los botones estén en columna en móviles */
+      }
+    
+      .buttons.is-centered .button {
+        width: 100%; /* Asegura que los botones ocupen todo el ancho en móviles */
+        margin-bottom: 10px; /* Agregar espacio entre los botones en móviles */
+        font-size: 0.9rem; /* Reducir el tamaño de la fuente de los botones */
+        padding: 10px 15px; /* Ajustar padding en los botones */
+      }
+  }
+  
+  @media (max-width: 480px) {
+    /* Ajustar para pantallas aún más pequeñas */
+    header h1 {
+      font-size: 1.2rem;
+    }
+  
+    header a {
+      font-size: 0.9rem;
+    }
+  
+    header a svg {
+      width: 0.9rem; /* Tamaño más pequeño del ícono en pantallas muy pequeñas */
+      height: 0.9rem;
+    }
+    .modal-card-body p {
+        font-size: 0.9rem; /* Aún más pequeño en pantallas muy pequeñas */
+      }
+    
+      .buttons.is-centered .button {
+        font-size: 0.85rem; /* Reducir más el tamaño de la fuente en botones */
+        padding: 8px 12px; /* Ajustar padding en pantallas muy pequeñas */
+      }
+  
+}

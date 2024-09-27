@@ -1,0 +1,10 @@
+/* Centrado del contenedor */
+  .custom-form {
+    max-width: 500px;
+    width: 100%;
+    padding: 2rem;
+    box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.5); /* Sombreado blanco */
+    border-radius: 8px;
+    background-color: #222222;
+  }
+  

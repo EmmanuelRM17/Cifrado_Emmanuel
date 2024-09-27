@@ -1,0 +1,104 @@
+/* Estilo general */
+.acerca-de-container {
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .card {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #2c2c2c;
+  }
+  
+  .card-content {
+    padding: 20px;
+    color: #f5f5f5;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 30px;
+  }
+  
+  .content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #d1d1d1;
+  }
+  
+  .columns.is-centered {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .column {
+    padding: 20px;
+  }
+  
+  .acerca-de-container {
+    animation: moveDivs 10s infinite alternate;
+  }
+  
+  @keyframes moveDivs {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(15px);
+    }
+    100% {
+      transform: translateX(-15px);
+    }
+  }
+  
+  /* Estilo general para móviles */
+  @media (max-width: 768px) {
+    .acerca-de-container {
+      padding: 1rem; /* Reducir el padding en móviles */
+      margin: 0 auto;
+      max-width: 100%;
+    }
+  
+    .acerca-de-container h1 {
+      font-size: 1.8rem; /* Reducir el tamaño del título en móviles */
+    }
+  
+    .info-cards {
+      flex-direction: column; /* Poner los divs en columna para móviles */
+      align-items: center; /* Centrar los divs en móviles */
+    }
+  
+    .info-card {
+      width: 90%; /* Ocupa todo el ancho disponible en móviles */
+      margin-bottom: 1rem; /* Espaciado más pequeño en móviles */
+    }
+  
+    .info-card h2 {
+      font-size: 1.2rem; /* Reducir el tamaño del subtítulo en móviles */
+    }
+  
+    .info-card p {
+      font-size: 0.9rem; /* Ajustar el tamaño del texto en móviles */
+    }
+  }
+  
+  /* Ajustes para pantallas muy pequeñas (teléfonos) */
+  @media (max-width: 480px) {
+    .acerca-de-container h1 {
+      font-size: 1.5rem; /* Reducir más el título en pantallas pequeñas */
+    }
+  
+    .info-card {
+      width: 100%; /* Usar todo el ancho disponible en pantallas muy pequeñas */
+    }
+  
+    .info-card p {
+      font-size: 0.85rem; /* Ajustar el tamaño del texto para pantallas muy pequeñas */
+    }
+  }
+  
