@@ -83,9 +83,9 @@ function CifradoCesar() {
     boxShadow: '0px 4px 12px rgba(255, 255, 255, 0.5)',
     borderRadius: '8px',
     backgroundColor: '#222222',
-    marginTop: isMobile? '1rem': '0rem',
+    marginTop: isMobile ? '1rem' : '0rem',
 
-};
+  };
 
   const backButtonStyle = {
     position: 'absolute',
@@ -172,194 +172,194 @@ function CifradoCesar() {
           </div>
         </form>
 
-{/* Enlace para mostrar la explicación del Cifrado César centrado */}
-<div style={{ textAlign: 'center', marginTop: '20px' }}>
-    <a
-        href="javascript:void(0)"
-        onClick={() => setModalVisible(true)}
-        style={{
-            color: 'lightblue',
-            textDecoration: 'none',
-            padding: '10px 20px',
-            display: 'inline-block',
-            borderRadius: '8px',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-        }}
-        onMouseEnter={(e) => {
-            e.target.style.transform = 'translateY(-5px)';
-            e.target.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.2)';
-            e.target.style.color = '#ffffff';  // Cambia el color al pasar el cursor
-            e.target.style.backgroundColor = '#2b2f38'; // Agregar fondo oscuro
-        }}
-        onMouseLeave={(e) => {
-            e.target.style.transform = 'translateY(0)';
-            e.target.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-            e.target.style.color = 'lightblue'; // Vuelve al color original
-            e.target.style.backgroundColor = 'transparent'; // Sin fondo
-        }}
-    >
-        Acerca de Cifrado César
-    </a>
-</div>
+        {/* Enlace para mostrar la explicación del Cifrado César centrado */}
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          <a
+            href="javascript:void(0)"
+            onClick={() => setModalVisible(true)}
+            style={{
+              color: 'lightblue',
+              textDecoration: 'none',
+              padding: '10px 20px',
+              display: 'inline-block',
+              borderRadius: '8px',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-5px)';
+              e.target.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.2)';
+              e.target.style.color = '#ffffff';  // Cambia el color al pasar el cursor
+              e.target.style.backgroundColor = '#2b2f38'; // Agregar fondo oscuro
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+              e.target.style.color = 'lightblue'; // Vuelve al color original
+              e.target.style.backgroundColor = 'transparent'; // Sin fondo
+            }}
+          >
+            Acerca de Cifrado César
+          </a>
+        </div>
 
-{modalVisible && (
-    <div className="modal is-active">
-        <div className="modal-background" onClick={() => setModalVisible(false)}></div>
-        <div className="modal-content">
-            <div className="box" style={{ padding: '2rem' }}>
+        {modalVisible && (
+          <div className="modal is-active">
+            <div className="modal-background" onClick={() => setModalVisible(false)}></div>
+            <div className="modal-content">
+              <div className="box" style={{ padding: '2rem' }}>
                 <h2 className="title">¿Qué es el Cifrado César?</h2>
                 <p style={{ marginBottom: '1.5rem' }}>
-                    El <strong>Cifrado César</strong>, también conocido como cifrado por desplazamiento, es uno de los cifrados más antiguos y simples que existen. Se utilizaba en la época del Imperio Romano, nombrado en honor a Julio César, quien lo usaba para enviar mensajes secretos a sus generales. Funciona desplazando cada letra del mensaje original un número fijo de posiciones en el alfabeto.
+                  El <strong>Cifrado César</strong>, también conocido como cifrado por desplazamiento, es uno de los cifrados más antiguos y simples que existen. Se utilizaba en la época del Imperio Romano, nombrado en honor a Julio César, quien lo usaba para enviar mensajes secretos a sus generales. Funciona desplazando cada letra del mensaje original un número fijo de posiciones en el alfabeto.
                 </p>
 
                 <h3 className="subtitle">¿Cómo funciona el Cifrado César?</h3>
                 <p style={{ marginBottom: '1rem' }}>
-                    El cifrado César es un tipo de cifrado por sustitución en el cual cada letra del mensaje se reemplaza por otra, desplazándola un número fijo de posiciones en el alfabeto. Por ejemplo, con un desplazamiento de 3, "A" se convierte en "D", "B" en "E", y así sucesivamente.
+                  El cifrado César es un tipo de cifrado por sustitución en el cual cada letra del mensaje se reemplaza por otra, desplazándola un número fijo de posiciones en el alfabeto. Por ejemplo, con un desplazamiento de 3, "A" se convierte en "D", "B" en "E", y así sucesivamente.
                 </p>
 
                 <h4 className="subtitle">Proceso de Cifrado</h4>
                 <ol style={{ marginBottom: '1.5rem' }}>
-                    <li>Selecciona un número para el desplazamiento (la clave).</li>
-                    <li>Desplaza cada letra del mensaje original ese número de posiciones en el alfabeto.</li>
-                    <li>Si alcanzas el final del alfabeto, empieza nuevamente desde la letra "A".</li>
+                  <li>Selecciona un número para el desplazamiento (la clave).</li>
+                  <li>Desplaza cada letra del mensaje original ese número de posiciones en el alfabeto.</li>
+                  <li>Si alcanzas el final del alfabeto, empieza nuevamente desde la letra "A".</li>
                 </ol>
 
                 <h4 className="subtitle">Ejemplo de Cifrado</h4>
                 <p style={{ marginBottom: '1rem' }}>
-                    Supongamos que queremos cifrar el mensaje "HOLA" usando un desplazamiento de 3:
+                  Supongamos que queremos cifrar el mensaje "HOLA" usando un desplazamiento de 3:
                 </p>
 
                 <table className="table is-striped is-bordered" style={{ marginBottom: '1.5rem', backgroundColor: '#1f1f1f', color: 'white' }}>
-                    <thead>
-                        <tr style={{ backgroundColor: '#333', color: 'white' }}>
-                            <th>Letra Original</th>
-                            <th>Letra Cifrada (Desplazamiento de 3)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>H</td>
-                            <td>K</td>
-                        </tr>
-                        <tr>
-                            <td>O</td>
-                            <td>R</td>
-                        </tr>
-                        <tr>
-                            <td>L</td>
-                            <td>O</td>
-                        </tr>
-                        <tr>
-                            <td>A</td>
-                            <td>D</td>
-                        </tr>
-                    </tbody>
+                  <thead>
+                    <tr style={{ backgroundColor: '#333', color: 'white' }}>
+                      <th>Letra Original</th>
+                      <th>Letra Cifrada (Desplazamiento de 3)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>H</td>
+                      <td>K</td>
+                    </tr>
+                    <tr>
+                      <td>O</td>
+                      <td>R</td>
+                    </tr>
+                    <tr>
+                      <td>L</td>
+                      <td>O</td>
+                    </tr>
+                    <tr>
+                      <td>A</td>
+                      <td>D</td>
+                    </tr>
+                  </tbody>
                 </table>
 
                 <p style={{ marginBottom: '1.5rem' }}>
-                    El mensaje cifrado sería: <strong>"KROD"</strong>.
+                  El mensaje cifrado sería: <strong>"KROD"</strong>.
                 </p>
 
                 <h4 className="subtitle">Proceso de Descifrado</h4>
                 <p style={{ marginBottom: '1rem' }}>
-                    Para descifrar el mensaje, simplemente desplaza las letras en sentido inverso usando el mismo número de desplazamiento (clave) que se usó para cifrarlo.
+                  Para descifrar el mensaje, simplemente desplaza las letras en sentido inverso usando el mismo número de desplazamiento (clave) que se usó para cifrarlo.
                 </p>
 
                 <h4 className="subtitle">Ejemplo de Descifrado</h4>
                 <p style={{ marginBottom: '1rem' }}>
-                    Si queremos descifrar "KROD" usando un desplazamiento de 3, retrocedemos 3 posiciones en el alfabeto:
+                  Si queremos descifrar "KROD" usando un desplazamiento de 3, retrocedemos 3 posiciones en el alfabeto:
                 </p>
 
                 <table className="table is-striped is-bordered" style={{ marginBottom: '1.5rem', backgroundColor: '#1f1f1f', color: 'white' }}>
-                    <thead>
-                        <tr style={{ backgroundColor: '#333', color: 'white' }}>
-                            <th>Letra Cifrada</th>
-                            <th>Letra Original (Desplazamiento inverso de 3)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>K</td>
-                            <td>H</td>
-                        </tr>
-                        <tr>
-                            <td>R</td>
-                            <td>O</td>
-                        </tr>
-                        <tr>
-                            <td>O</td>
-                            <td>L</td>
-                        </tr>
-                        <tr>
-                            <td>D</td>
-                            <td>A</td>
-                        </tr>
-                    </tbody>
+                  <thead>
+                    <tr style={{ backgroundColor: '#333', color: 'white' }}>
+                      <th>Letra Cifrada</th>
+                      <th>Letra Original (Desplazamiento inverso de 3)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>K</td>
+                      <td>H</td>
+                    </tr>
+                    <tr>
+                      <td>R</td>
+                      <td>O</td>
+                    </tr>
+                    <tr>
+                      <td>O</td>
+                      <td>L</td>
+                    </tr>
+                    <tr>
+                      <td>D</td>
+                      <td>A</td>
+                    </tr>
+                  </tbody>
                 </table>
 
                 <p style={{ marginBottom: '1.5rem' }}>
-                    El mensaje descifrado sería: <strong>"HOLA"</strong>.
+                  El mensaje descifrado sería: <strong>"HOLA"</strong>.
                 </p>
 
                 <h4 className="subtitle">Ventajas y Desventajas</h4>
                 <p style={{ marginBottom: '1rem' }}>
-                    <strong>Ventajas:</strong>
+                  <strong>Ventajas:</strong>
                 </p>
                 <ul style={{ marginBottom: '1.5rem' }}>
-                    <li>Es extremadamente simple y fácil de implementar.</li>
-                    <li>No requiere equipos complejos para su ejecución.</li>
-                    <li>Es adecuado para fines educativos o para cifrar mensajes poco sensibles.</li>
+                  <li>Es extremadamente simple y fácil de implementar.</li>
+                  <li>No requiere equipos complejos para su ejecución.</li>
+                  <li>Es adecuado para fines educativos o para cifrar mensajes poco sensibles.</li>
                 </ul>
 
                 <p style={{ marginBottom: '1rem' }}>
-                    <strong>Desventajas:</strong>
+                  <strong>Desventajas:</strong>
                 </p>
                 <ul style={{ marginBottom: '1.5rem' }}>
-                    <li>Es vulnerable a ataques de fuerza bruta, ya que solo hay 25 posibles claves (desplazamientos).</li>
-                    <li>No es seguro para la protección de información confidencial o importante.</li>
-                    <li>Puede ser fácilmente descifrado si se conoce el método utilizado.</li>
+                  <li>Es vulnerable a ataques de fuerza bruta, ya que solo hay 25 posibles claves (desplazamientos).</li>
+                  <li>No es seguro para la protección de información confidencial o importante.</li>
+                  <li>Puede ser fácilmente descifrado si se conoce el método utilizado.</li>
                 </ul>
 
                 <h4 className="subtitle">Guía de Uso</h4>
                 <p style={{ marginBottom: '1rem' }}>
-                    <strong>Pasos para cifrar:</strong>
+                  <strong>Pasos para cifrar:</strong>
                 </p>
                 <ul>
-                    <li>1. Elige un número de desplazamiento que servirá como clave.</li>
-                    <li>2. Aplica ese desplazamiento a cada letra del mensaje, moviéndolas en el alfabeto.</li>
-                    <li>3. Lee el mensaje cifrado resultante.</li>
+                  <li>1. Elige un número de desplazamiento que servirá como clave.</li>
+                  <li>2. Aplica ese desplazamiento a cada letra del mensaje, moviéndolas en el alfabeto.</li>
+                  <li>3. Lee el mensaje cifrado resultante.</li>
                 </ul>
 
                 <p style={{ marginBottom: '1rem' }}>
-                    <strong>Pasos para descifrar:</strong>
+                  <strong>Pasos para descifrar:</strong>
                 </p>
                 <ul>
-                    <li>1. Usa el mismo número de desplazamiento (clave) que se usó para cifrar el mensaje.</li>
-                    <li>2. Desplaza cada letra en sentido inverso para recuperar el mensaje original.</li>
+                  <li>1. Usa el mismo número de desplazamiento (clave) que se usó para cifrar el mensaje.</li>
+                  <li>2. Desplaza cada letra en sentido inverso para recuperar el mensaje original.</li>
                 </ul>
 
                 <h4 className="subtitle">Aplicaciones Modernas</h4>
                 <p>
-                    Aunque el cifrado César es demasiado simple para aplicaciones modernas de seguridad, sus principios se encuentran en muchos cifrados por sustitución utilizados hoy en día. Sin embargo, en la práctica, los sistemas criptográficos modernos usan claves mucho más largas y complejas para proteger datos.
+                  Aunque el cifrado César es demasiado simple para aplicaciones modernas de seguridad, sus principios se encuentran en muchos cifrados por sustitución utilizados hoy en día. Sin embargo, en la práctica, los sistemas criptográficos modernos usan claves mucho más largas y complejas para proteger datos.
                 </p>
 
                 <h4 className="subtitle">Más sobre el Cifrado César</h4>
                 <p>
-                    Puedes aprender más sobre el cifrado César y su historia en este enlace:
-                    <a href="https://es.wikipedia.org/wiki/Cifrado_César" target="_blank" rel="noopener noreferrer" style={{ color: 'lightblue', marginLeft: '5px' }}>
-                        Wikipedia - Cifrado César
-                    </a>
+                  Puedes aprender más sobre el cifrado César y su historia en este enlace:
+                  <a href="https://es.wikipedia.org/wiki/Cifrado_César" target="_blank" rel="noopener noreferrer" style={{ color: 'lightblue', marginLeft: '5px' }}>
+                    Wikipedia - Cifrado César
+                  </a>
                 </p>
 
                 <button className="button is-primary" onClick={() => setModalVisible(false)} style={{ marginTop: '1.5rem' }}>
-                    Cerrar
+                  Cerrar
                 </button>
+              </div>
             </div>
-        </div>
-        <button className="modal-close is-large" aria-label="close" onClick={() => setModalVisible(false)}></button>
-    </div>
-)}
+            <button className="modal-close is-large" aria-label="close" onClick={() => setModalVisible(false)}></button>
+          </div>
+        )}
       </div>
     </div>
   );

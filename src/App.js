@@ -4,7 +4,10 @@ import './css/inicio.css';
 import 'bulma/css/bulma.min.css';
 import CifradoCesar from './components/CifradoCesar';
 import CifradoEscitala from './components/CifradoEscitala';
-import AcercaDe from './components/AcercaDe.jsx'; 
+import CifradoSerpent from './components/CifradoSerpent';  
+import CifradoNTRU from './components/CifradoNTRU.jsx';
+import MetodoHash from './components/MetodoHash.jsx'; 
+import AcercaDe from './components/AcercaDe.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons'; // Ícono de Inicio
 import { faFacebook } from '@fortawesome/free-brands-svg-icons'; // Ícono de Facebook
@@ -26,21 +29,35 @@ function App() {
     <Router>
       <div>
         {/* Header */}
-        <header style={{ display: 'flex', justifyContent: 'space-between', padding: '20px', backgroundColor: '#14161A', color: '#ffffff' }}>
-          <h1 style={{ margin: 0 }}>Encryptione</h1>
-          <Link to="/" style={{ color: '#ffffff', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-            <FontAwesomeIcon icon={faHome} style={{ marginRight: '8px' }} />
-            Inicio
-          </Link>
-        </header>
+        <header style={{ display: 'flex', justifyContent: 'space-between', padding: '20px', backgroundColor: '#141414', color: '#ffffff' }}>
+      <h1 style={{ margin: 0 }}>Encryptione</h1>
+      <Link
+        to="/"
+        style={{
+          color: '#ffffff',
+          textDecoration: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          transition: 'color 0.3s ease', // Efecto suave para el cambio de color
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.color = 'lightblue'; // Cambiar el color cuando el puntero esté sobre el enlace
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.color = '#ffffff'; // Restaurar el color original cuando el puntero se aleje del enlace
+        }}
+      >
+        <FontAwesomeIcon icon={faHome} style={{ marginRight: '8px' }} />
+        Inicio
+      </Link>
+    </header>
 
         <Routes>
           <Route
             path="/"
             element={
               <div className="hero is-fullheight">
-                <div className="hero-body" style={{ height: '90vh',
-}}>
+                <div className="hero-body" style={{ height: '90vh' }}>
                   <div className="container has-text-centered">
                     <h1 className="title">
                       Seguridad Informática: Cifrado y Descifrado
@@ -64,7 +81,7 @@ function App() {
                         <div className="modal-background" onClick={closeModal}></div>
                         <div className="modal-card">
                           <header className="modal-card-head">
-                            <p className="modal-card-title">¿Con qué deseas cifrar?</p>
+                            <p className="modal-card-title">¿Con qué deseas cifrar o descifrar?</p>
                             <button className="delete" aria-label="close" onClick={closeModal}></button>
                           </header>
                           <section className="modal-card-body has-text-centered">
@@ -76,11 +93,21 @@ function App() {
                               <Link to="/cifrado-escitala" className="button" onClick={closeModal} style={{ background: '#213bbc' }}>
                                 Cifrado Escítala
                               </Link>
+                              <Link to="/cifrado-serpent" className="button" onClick={closeModal} style={{ background: '#213bbc' }}>
+                                Cifrado Serpent
+                              </Link>
+                              <Link to="/cifrado-ntru" className="button" onClick={closeModal} style={{ background: '#213bbc' }}>
+                                Cifrado NTRUEncrypt
+                              </Link>
+                              <Link to="/metodo-hash" className="button" onClick={closeModal} style={{ background: '#213bbc' }}>
+                                Método Hash
+                              </Link>
                             </div>
                           </section>
                         </div>
                       </div>
                     )}
+
                   </div>
                 </div>
               </div>
@@ -88,12 +115,15 @@ function App() {
           />
           <Route path="/cifrado-cesar" element={<CifradoCesar />} />
           <Route path="/cifrado-escitala" element={<CifradoEscitala />} />
-          <Route path="/acerca-de" element={<AcercaDe />} /> 
+          <Route path="/cifrado-serpent" element={<CifradoSerpent />} />
+          <Route path="/cifrado-ntru" element={<CifradoNTRU />} />
+          <Route path="/metodo-hash" element={<MetodoHash />} />
+          <Route path="/acerca-de" element={<AcercaDe />} />
         </Routes>
 
         {/* Footer */}
         <footer style={{ backgroundColor: '#141414', color: '#ffffff', padding: '10px 0', textAlign: 'center', position: 'fixed', bottom: 0, width: '100%' }}>
-          <p>© 2024 Todos los derechos reservados. Emmanuel Rodriguez Martinez. 7"B" </p>
+          <p>© 2024 Todos los derechos reservados. Emmanuel Rodriguez Martinez. 7"B"</p>
           <a href="https://www.facebook.com/profile.php?id=100078391132863&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>
             <FontAwesomeIcon icon={faFacebook} style={{ marginRight: '8px' }} />
             Facebook

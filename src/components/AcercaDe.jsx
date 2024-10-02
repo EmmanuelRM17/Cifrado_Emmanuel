@@ -41,7 +41,7 @@ function AcercaDe() {
                             </p>
                         </div>
 
-                        <div className="info-card" style={{ backgroundColor: '#333', padding: '1.5rem', borderRadius: '12px', marginBottom: '1.5rem',  }}>
+                        <div className="info-card" style={{ backgroundColor: '#333', padding: '1.5rem', borderRadius: '12px', marginBottom: '2.5rem',  }}>
                             <h2 style={{ fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '1rem' }}>El Futuro del Cifrado</h2>
                             <p>
                                 Nuestra visión es ser una referencia en educación sobre criptografía, ofreciendo recursos actualizados y adecuados a los avances tecnológicos. Desde la criptografía tradicional hasta los métodos de cifrado basados en inteligencia artificial, CifradoTech está en constante evolución.
