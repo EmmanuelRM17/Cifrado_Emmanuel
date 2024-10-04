@@ -30,7 +30,7 @@ function CifradoNTRU() {
 
   const generarClavePrivada = () => {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const longitud = Math.floor(10 + Math.random() * 3); // Longitud entre 10 y 12
+    const longitud = Math.floor(10 + Math.random() * 3); // Longe 10 y 12
     let clave = '';
     for (let i = 0; i < longitud; i++) {
       clave += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
