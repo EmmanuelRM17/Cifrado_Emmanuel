@@ -16,10 +16,9 @@ function MetodoHash() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
 
-    // Método para hashear los datos usando RIPEMD-160
+    // Método para hashear los datos 
     const hashWithRIPEMD160 = (data) => {
         try {
-            // Usando RIPEMD-160 para hashear los datos
             const hash = CryptoES.RIPEMD160(data);
             return hash.toString(CryptoES.enc.Hex);
         } catch (error) {

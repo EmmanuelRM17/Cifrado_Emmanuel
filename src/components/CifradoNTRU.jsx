@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NTRUEncrypt from '../utils/NTRUEncrypt ';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy, faLock, faEnvelope, faMapMarkedAlt, faPhone, faCreditCard, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCopy, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 function CifradoNTRU() {
   const [mensaje, setMensaje] = useState('');
-  const [clave, setClave] = useState('');
+  const [clavePrivada, setClavePrivada] = useState('');
+  const [clavePublica, setClavePublica] = useState('');
   const [resultado, setResultado] = useState('');
-  const [modalVisible, setModalVisible] = useState(false);
+  const [mensajeCifradoGenerado, setMensajeCifradoGenerado] = useState('');
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [accion, setAccion] = useState('cifrar');
-  const [mostrarMas, setMostrarMas] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [modalVisible, setModalVisible] = useState(false); // Añadido el estado para la visibilidad del modal
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const handlePopState = () => {
-      if (modalVisible) {
-        setModalVisible(false);
-      } else {
-        navigate(-1);
-      }
+      setIsModalOpen(false);
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -31,42 +26,62 @@ function CifradoNTRU() {
     return () => {
       window.removeEventListener('popstate', handlePopState);
     };
-  }, [modalVisible, navigate]);
+  }, [navigate]);
+
+  const generarClavePrivada = () => {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const longitud = Math.floor(10 + Math.random() * 3); // Longitud entre 10 y 12
+    let clave = '';
+    for (let i = 0; i < longitud; i++) {
+      clave += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    }
+    return clave;
+  };
 
   const cifrarMensaje = () => {
-    if (mensaje.length === 0 || clave.length === 0) {
-      alert('Por favor ingresa un mensaje y una clave válidos');
+    if (mensaje.length === 0) {
+      alert('Por favor ingresa un mensaje válido');
       return;
     }
 
-    const cifrado = NTRUEncrypt.encrypt(mensaje, clave);
-    setResultado(cifrado);
-    console.log('Mensaje cifrado:', cifrado);
+    const claveGenerada = generarClavePrivada();
+    setClavePrivada(claveGenerada);
+    setClavePublica(''); // Reseteamos la clave pública
+
+    // Simulando cifrado (este ejemplo sólo retorna la clave generada como cifrado)
+    setMensajeCifradoGenerado(claveGenerada);
+    setResultado(`${claveGenerada}`);
   };
 
   const descifrarMensaje = () => {
-    if (mensaje.length === 0 || clave.length === 0) {
-      alert('Por favor ingresa un mensaje cifrado y una clave válidos');
+    if (mensaje.length === 0 || clavePublica.length === 0) {
+      alert('Por favor ingresa un mensaje cifrado y una clave válida');
       return;
     }
 
-    const descifrado = NTRUEncrypt.decrypt(mensaje, clave);
-    setResultado(descifrado);
-    console.log('Mensaje descifrado:', descifrado);
+    // Verificar si el mensaje y la clave proporcionados coinciden con los generados al cifrar
+    if (mensaje === mensajeCifradoGenerado && clavePublica === clavePrivada) {
+      setResultado('El mensaje es válido');
+    } else {
+      setResultado('El mensaje o la clave no son válidos');
+    }
   };
-
 
   const handleChangeAccion = () => {
     setAccion(accion === 'cifrar' ? 'descifrar' : 'cifrar');
     setResultado('');
+    setMensaje('');
+    setClavePrivada('');
+    setClavePublica('');
+    setMensajeCifradoGenerado('');
   };
 
   const copyToClipboard = () => {
-    if (resultado) {
-      navigator.clipboard.writeText(resultado);
-      alert('Texto copiado al portapapeles');
+    if (clavePrivada) {
+      navigator.clipboard.writeText(clavePrivada);
+      alert('Clave privada copiada al portapapeles');
     } else {
-      alert('No hay texto para copiar');
+      alert('No hay clave privada para copiar');
     }
   };
 
@@ -90,11 +105,10 @@ function CifradoNTRU() {
 
   const resultStyle = {
     backgroundColor: '#14161A',
-    borderColor: resultado ? '#15C43B' : '#14161A',
-    color: resultado ? 'white' : 'black',
+    border: resultado.includes('no son válidos') ? '2px solid red' : '2px solid #15C43B',
+    color: resultado.includes('no son válidos') ? 'red' : 'white',
     padding: '1rem',
     borderRadius: '4px',
-    border: '2px solid',
     width: '100%',
     marginTop: '1rem',
     textAlign: 'center',
@@ -103,7 +117,7 @@ function CifradoNTRU() {
   return (
     <div style={containerStyle}>
       <div style={boxStyle}>
-      <h1 className="title has-text-centered" style={{ color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <h1 className="title has-text-centered" style={{ color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           Cifrado - NTRUEncrypt
           <FontAwesomeIcon
             icon={faExclamationCircle}
@@ -112,7 +126,6 @@ function CifradoNTRU() {
           />
         </h1>
 
-        {/* Modal para información adicional sobre NTRUEncrypt */}
         {isModalOpen && (
           <div className="modal is-active">
             <div className="modal-background" onClick={() => setIsModalOpen(false)}></div>
@@ -132,12 +145,11 @@ function CifradoNTRU() {
             <button className="modal-close is-large" aria-label="close" onClick={() => setIsModalOpen(false)}></button>
           </div>
         )}
-<br />
+
+        <br />
         <form>
           <div className="field">
-            <label className="label" style={{ color: 'white' }}>
-              <i className="fas fa-envelope" style={{ marginRight: '5px' }}></i> Mensaje
-            </label>
+            <label className="label" style={{ color: 'white' }}>Mensaje</label>
             <div className="control">
               <input
                 className="input"
@@ -149,22 +161,33 @@ function CifradoNTRU() {
             </div>
           </div>
 
-          <div className="field">
-            <label className="label" style={{ color: 'white' }}>
-              <i className="fas fa-key" style={{ marginRight: '5px' }}></i>
-              {accion === 'cifrar' ? 'Clave pública (número para cifrar)' : 'Clave privada (número para descifrar)'}
-            </label>
-            <div className="control">
-              <input
-                className="input"
-                type="number"
-                value={clave}
-                onChange={(e) => setClave(e.target.value)} // Manejo del cambio de la clave
-                placeholder="Ingresa la clave"
-              />
+          {accion === 'cifrar' ? (
+            <div className="field">
+              <label className="label" style={{ color: 'white' }}>Clave Privada Generada</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  value={clavePrivada}
+                  readOnly
+                  placeholder="La clave se genera automáticamente al cifrar"
+                />
+              </div>
             </div>
-
-          </div>
+          ) : (
+            <div className="field">
+              <label className="label" style={{ color: 'white' }}>Clave Pública (para descifrar)</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  value={clavePublica}
+                  onChange={(e) => setClavePublica(e.target.value)}
+                  placeholder="Ingresa la clave pública"
+                />
+              </div>
+            </div>
+          )}
 
           <div className="control">
             <button
@@ -172,7 +195,6 @@ function CifradoNTRU() {
               type="button"
               onClick={accion === 'cifrar' ? cifrarMensaje : descifrarMensaje}
             >
-              <i className={`fas ${accion === 'cifrar' ? 'fa-lock' : 'fa-unlock'}`} style={{ marginRight: '5px' }}></i>
               {accion === 'cifrar' ? 'Cifrar' : 'Descifrar'}
             </button>
 
@@ -183,18 +205,17 @@ function CifradoNTRU() {
 
           <br />
 
-          {/* Caja de texto para mostrar el resultado */}
           <div className="field">
             <label className="label" style={{ color: 'white' }}>Resultado:</label>
             <div className="control is-flex">
               <textarea style={resultStyle} readOnly value={resultado}></textarea>
               <button className="button" onClick={copyToClipboard} type="button" style={{ marginLeft: '10px' }}>
-                <i className="fas fa-copy"></i>
+                <FontAwesomeIcon icon={faCopy} />
               </button>
             </div>
           </div>
         </form>
-
+        
 
         {/* Enlace para mostrar la explicación del Cifrado NTRU centrado */}
         <div style={{ textAlign: 'center', marginTop: '20px' }}>

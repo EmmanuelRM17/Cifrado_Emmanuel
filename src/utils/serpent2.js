@@ -29,14 +29,11 @@ function serpentEncrypt(message, key) {
         throw new Error('El mensaje y la clave no pueden ser vacíos o indefinidos.');
     }
 
-    // Convertir el mensaje a binario y rellenar a 128 bits
     let binaryMessage = stringToBinary(message);
     binaryMessage = padTo128Bits(binaryMessage);
 
-    // Generar las subclaves
     let subKeys = keyExpansion(stringToBinary(key));
 
-    // Mezcla inicial con la primera subclave
     let state = xor(binaryMessage, subKeys[0]);
 
     // Aplicar 32 rondas de cifrado
@@ -46,10 +43,8 @@ function serpentEncrypt(message, key) {
         state = xor(state, subKeys[round + 1]);
     }
 
-    // Última mezcla con la subclave final
     state = xor(state, subKeys[32]);
 
-    // Convertir a hexadecimal
     let encryptedMessageHex = binaryToHex(state);
     return encryptedMessageHex;
 }
@@ -57,9 +52,8 @@ function serpentEncrypt(message, key) {
 // Función para generar subclaves de Serpent
 function keyExpansion(binaryKey) {
     let subKeys = [];
-    // Generación de subclaves simplificada
     for (let i = 0; i < 33; i++) {
-        subKeys.push(binaryKey.padEnd(128, '0').slice(0, 128)); // Esto es ilustrativo
+        subKeys.push(binaryKey.padEnd(128, '0').slice(0, 128)); 
     }
     return subKeys;
 }
@@ -89,7 +83,7 @@ function permutation(state) {
 function stringToBinary(input) {
     return input.split('').map(char => {
         let binary = char.charCodeAt(0).toString(2);
-        return binary.padStart(8, '0'); // Asegurar 8 bits por carácter
+        return binary.padStart(8, '0'); 
     }).join('');
 }
 
@@ -107,7 +101,7 @@ function binaryToHex(binary) {
 function hexToBinary(hex) {
     return hex.split('').map(char => {
         let binary = parseInt(char, 16).toString(2);
-        return binary.padStart(4, '0'); // Asegurar 4 bits por carácter hexadecimal
+        return binary.padStart(4, '0'); 
     }).join('');
 }
 
@@ -125,16 +119,15 @@ function binaryToString(binary) {
 function xor(binary1, binary2) {
     let result = '';
     for (let i = 0; i < binary1.length; i++) {
-        result += (binary1[i] ^ binary2[i]).toString(); // Aplicar XOR bit a bit
+        result += (binary1[i] ^ binary2[i]).toString(); 
     }
     return result;
 }
 
 // Función para ajustar a 128 bits
-// Función para ajustar a 128 bits con PKCS#7
 function padTo128Bits(binaryMessage) {
     let paddingLength = 128 - (binaryMessage.length % 128);
-    let padding = ''.padEnd(paddingLength, '0'); // En PKCS#7, esto normalmente sería el número del padding repetido
+    let padding = ''.padEnd(paddingLength, '0'); 
     return binaryMessage + padding;
 }
 
@@ -144,29 +137,22 @@ function serpentDecrypt(ciphertext, key) {
         throw new Error('El texto cifrado y la clave no pueden ser vacíos o indefinidos.');
     }
 
-    // Convertir el mensaje cifrado de hexadecimal a binario
     let binaryCiphertext = hexToBinary(ciphertext);
 
-    // Generar las subclaves
     let subKeys = keyExpansion(stringToBinary(key));
 
-    // Última mezcla inversa con la última subclave
     let state = xor(binaryCiphertext, subKeys[32]);
 
-    // Aplicar las rondas de descifrado en orden inverso
     for (let round = 31; round >= 0; round--) {
         state = xor(state, subKeys[round]);
         state = inversePermutation(state);
         state = inverseSBoxSubstitution(state, round);
     }
 
-    // Mezcla inversa con la primera subclave
     state = xor(state, subKeys[0]);
 
-    // Convertir de binario a texto
     let decryptedMessage = binaryToString(state);
 
-    // Eliminar el relleno (PKCS#7)
     decryptedMessage = decryptedMessage.replace(/\0+$/, '');
 
     return decryptedMessage;

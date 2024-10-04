@@ -24,7 +24,7 @@ class Polynomial {
         for (let i = 0; i < maxLength; i++) {
             const a = this.coeffs[i] || 0;
             const b = other.coeffs[i] || 0;
-            result[i] = ((a - b) % mod + mod) % mod; // Asegurar que esté en rango positivo
+            result[i] = ((a - b) % mod + mod) % mod;
         }
 
         return new Polynomial(result);
@@ -55,29 +55,22 @@ class Polynomial {
 
 const NTRUEncrypt = {
     encrypt: (message, clave, q = 256) => {
-        // Convertir el mensaje en un polinomio utilizando el código ASCII y aplicar la clave
         const m = new Polynomial(message.split('').map(char => char.charCodeAt(0)));
 
-        // Generar el polinomio público h usando la clave
         const h = new Polynomial([parseInt(clave), 2, 3, 4]); // Polinomio simplificado
 
-        // Generar el mensaje cifrado
         const encryptedMessage = m.add(h, q).mod(q);
         return encryptedMessage.toString();
     },
 
     decrypt: (encryptedMessage, clave, q = 256) => {
-        // Convertir el mensaje cifrado en un polinomio
         const coeffs = encryptedMessage.split(',').map(Number);
         const e = new Polynomial(coeffs);
 
-        // Generar el polinomio público h usando la clave
         const h = new Polynomial([parseInt(clave), 2, 3, 4]); // Polinomio simplificado
 
-        // Restar el polinomio h para descifrar
         const decryptedPolynomial = e.subtract(h, q);
 
-        // Convertir los coeficientes de vuelta a caracteres
         const decryptedMessage = decryptedPolynomial.coeffs.map(c => String.fromCharCode(c)).join('');
         return decryptedMessage;
     }

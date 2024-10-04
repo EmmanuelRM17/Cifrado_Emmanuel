@@ -9,7 +9,7 @@ import CifradoNTRU from './components/CifradoNTRU.jsx';
 import MetodoHash from './components/MetodoHash.jsx'; 
 import AcercaDe from './components/AcercaDe.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons'; // Ícono de Inicio
+import { faHome, faFilePdf } from '@fortawesome/free-solid-svg-icons'; // Íconos de Inicio y PDF
 import { faFacebook } from '@fortawesome/free-brands-svg-icons'; // Ícono de Facebook
 
 function App() {
@@ -31,6 +31,8 @@ function App() {
         {/* Header */}
         <header style={{ display: 'flex', justifyContent: 'space-between', padding: '20px', backgroundColor: '#141414', color: '#ffffff' }}>
       <h1 style={{ margin: 0 }}>Encryptione</h1>
+      <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+
       <Link
         to="/"
         style={{
@@ -50,6 +52,30 @@ function App() {
         <FontAwesomeIcon icon={faHome} style={{ marginRight: '8px' }} />
         Inicio
       </Link>
+      {/* Enlace a la documentación */}
+      <a
+  href="/doc/DOCUMENTACION_BINA10.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    color: '#ffffff',
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    transition: 'color 0.3s ease',
+  }}
+  onMouseEnter={(e) => {
+    e.target.style.color = 'lightblue';
+  }}
+  onMouseLeave={(e) => {
+    e.target.style.color = '#ffffff';
+  }}
+>
+  <FontAwesomeIcon icon={faFilePdf} style={{ marginRight: '8px' }} />
+  Documentación
+</a>
+
+          </div>
     </header>
 
         <Routes>
